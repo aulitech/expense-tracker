@@ -18,10 +18,10 @@
 import { format } from 'date-fns';
 import { deleteObject, getDownloadURL as getStorageDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { storage } from './firebase';
- 
+
 // Bucket URL from Storage in Firebase Console
-const BUCKET_URL = "";
- 
+const BUCKET_URL = "gs://exp-report.firebasestorage.app";
+
 // Uploads image and returns the storage bucket
 export async function uploadImage(image, uid) {
   const formattedDate = format(new Date(), "yyyy-MM-dd'T'HH:mm:ss'Z'");

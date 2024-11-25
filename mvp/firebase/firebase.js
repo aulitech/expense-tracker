@@ -22,10 +22,16 @@ import { getStorage } from 'firebase/storage';
 
 // Configure Firebase.
 const firebaseConfig = {
-  // Insert your Firebase project's configuration here
+  apiKey: "AIzaSyActcKgHX5X5qRU6DkTbu1-8NSP6LHWqHA",
+  authDomain: "exp-report.firebaseapp.com",
+  projectId: "exp-report",
+  storageBucket: "exp-report.firebasestorage.app",
+  messagingSenderId: "677312883926",
+  appId: "1:677312883926:web:d72c93753585ddb5e06d77",
+  measurementId: "G-4JLQV0YPTS"
 };
 
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
-export const storage = getStorage(app); 
+export const storage = getStorage(app);
