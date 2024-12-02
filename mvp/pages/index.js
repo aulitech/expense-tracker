@@ -59,8 +59,8 @@ export default function Home() {
 
       <main>
         <Container className={styles.container}>
-          <Typography variant="h1">Welcome to Expense Tracker!</Typography>
-          <Typography variant="h2">Add, view, edit, and delete expenses</Typography>
+          <Typography variant="h1">Welcome to Cato Gesture Collection!</Typography>
+          <Typography variant="h2">Add, view, edit, and delete your Cato Gestures</Typography>
           <div className={styles.buttons}>
             <Button variant="contained" color="secondary"
                     onClick={() => setLogin(true)}>

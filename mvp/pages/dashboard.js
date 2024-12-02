@@ -97,9 +97,8 @@ export default function Dashboard() {
   // For all of the onClick functions, update the action and fields for updating
 
   const onClickAdd = () => {
-    setAction(RECEIPTS_ENUM.add);
-    setUpdateReceipt({});
-  }
+    router.push('/gesture-collection'); // Navigate to the gesture collection page
+  };
 
   const onUpdate = (receipt) => {
     setAction(RECEIPTS_ENUM.edit);
@@ -135,7 +134,7 @@ export default function Dashboard() {
     :
     <div>
       <Head>
-        <title>Expense Tracker</title>
+        <title>Cato Gesture Collection</title>
       </Head>
 
       <NavBar />
@@ -150,7 +149,7 @@ export default function Dashboard() {
         </Snackbar>
         <Stack direction="row" sx={{ paddingTop: "1.5em" }}>
           <Typography variant="h4" sx={{ lineHeight: 2, paddingRight: "0.5em" }}>
-            EXPENSES
+            GESTURES
           </Typography>
           <IconButton aria-label="edit" color="secondary" onClick={onClickAdd} className={styles.addButton}>
             <AddIcon />
