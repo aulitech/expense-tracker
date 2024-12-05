@@ -378,98 +378,98 @@
         document.getElementById("timeoutDuration").addEventListener('input', validateInputs);
 
         let progressInterval;
-        function onStartButtonClick() {
-            const timeoutDuration = parseInt(document.getElementById('timeoutDuration').value) || 2;  // Default to 2 seconds if no input
-            if (enable) {
-                enable.writeValue(new Uint8Array([0x01]))
-                    .then(_ => {
-                        log('Enabling Cato Motion service.');
-                    })
-                    .catch(error => {
-                        log('Argh! ' + error);
-                        return
-                    });
-            } else {
-                log('No enable characteristic found');
-                return
-            }
+            function onStartButtonClick() {
+                const timeoutDuration = parseInt(document.getElementById('timeoutDuration').value) || 2;  // Default to 2 seconds if no input
+                if (enable) {
+                    enable.writeValue(new Uint8Array([0x01]))
+                        .then(_ => {
+                            log('Enabling Cato Motion service.');
+                        })
+                        .catch(error => {
+                            log('Argh! ' + error);
+                            return
+                        });
+                } else {
+                    log('No enable characteristic found');
+                    return
+                }
 
-            if (acc) {
-                acc.startNotifications()
-                    .then(_ => {
-                        log('Notifications requested');
-                        acc.addEventListener('characteristicvaluechanged', handleNotifications);
-                        document.querySelector('#stopNotifications').removeAttribute('disabled')
-                        document.querySelector('#startNotifications').setAttribute('disabled', 'disabled')
-                        notificationsRcvd = 0
-                        currentSessionData = []; // Clear current session data on start
+                if (acc) {
+                    acc.startNotifications()
+                        .then(_ => {
+                            log('Notifications requested');
+                            acc.addEventListener('characteristicvaluechanged', handleNotifications);
+                            document.querySelector('#stopNotifications').removeAttribute('disabled')
+                            document.querySelector('#startNotifications').setAttribute('disabled', 'disabled')
+                            notificationsRcvd = 0
+                            currentSessionData = []; // Clear current session data on start
 
-                        // Start progress bar animation and auto-stop logic
-                        const progressBar = document.getElementById('progressBar');
-                        progressBar.style.width = '100%';  // Set to full width initially
-                        let progress = 100;  // 100% width initially
-                        const intervalDuration = timeoutDuration * 1000 / 20;
+                            // Start progress bar animation and auto-stop logic
+                            const progressBar = document.getElementById('progressBar');
+                            progressBar.style.width = '100%';  // Set to full width initially
+                            let progress = 100;  // 100% width initially
+                            const intervalDuration = timeoutDuration * 1000 / 20;
 
-                        if (progressInterval) {
-                            clearInterval(progressInterval);
-                        }
-
-                        progressInterval = setInterval(() => {
-                            progress -= 5;  // Decrease progress by 5% (20 steps total)
-                            progressBar.style.width = progress + '%';  // Update the width of the bar
-
-                            if (progress <= 0) {
-                                clearInterval(progressInterval);  // Stop the interval when the bar is empty
-                                onStopButtonClick();  // Automatically stop notifications
+                            if (progressInterval) {
+                                clearInterval(progressInterval);
                             }
-                        }, intervalDuration);  // Adjust the interval based on the user-specified duration
-                    })
-                    .catch(error => {
-                        log('Argh! ' + error);
-                    });
-            } else {
-                log('No accelerometer characteristic found');
-                return
-            }
-        }
 
+                            progressInterval = setInterval(() => {
+                                progress -= 5;  // Decrease progress by 5% (20 steps total)
+                                progressBar.style.width = progress + '%';  // Update the width of the bar
 
-        function onStopButtonClick() {
-            if (acc) {
-                acc.stopNotifications()
-                    .then(_ => {
-                        log('Notifications stopped');
-                        acc.removeEventListener('characteristicvaluechanged', handleNotifications);
-
-                        // Disable Start and Stop buttons when Accept/Reject buttons appear
-                        document.querySelector('#startNotifications').setAttribute('disabled', 'disabled');
-                        document.querySelector('#stopNotifications').setAttribute('disabled', 'disabled');
-
-                        // Show Accept/Reject buttons after stop
-                        document.getElementById('acceptGesture').style.display = 'inline-block';
-                        document.getElementById('rejectGesture').style.display = 'inline-block';
-
-                         // Reset the progress bar
-                        const progressBar = document.getElementById('progressBar');
-                        progressBar.style.width = '100%';  // Reset the bar to full width
-                        clearInterval(progressInterval);
-                    })
-                    .catch(error => {
-                        log('Argh! ' + error);
-                    });
+                                if (progress <= 0) {
+                                    clearInterval(progressInterval);  // Stop the interval when the bar is empty
+                                    onStopButtonClick();  // Automatically stop notifications
+                                }
+                            }, intervalDuration);  // Adjust the interval based on the user-specified duration
+                        })
+                        .catch(error => {
+                            log('Argh! ' + error);
+                        });
+                } else {
+                    log('No accelerometer characteristic found');
+                    return
+                }
             }
 
-            if (enable) {
-                enable.writeValue(new Uint8Array([0x00]))
-                    .then(_ => {
-                        log('Disabling Cato Motion service');
-                    })
-                    .catch(error => {
-                        log('Argh! ' + error);
-                        return
-                    });
+
+            function onStopButtonClick() {
+                if (acc) {
+                    acc.stopNotifications()
+                        .then(_ => {
+                            log('Notifications stopped');
+                            acc.removeEventListener('characteristicvaluechanged', handleNotifications);
+
+                            // Disable Start and Stop buttons when Accept/Reject buttons appear
+                            document.querySelector('#startNotifications').setAttribute('disabled', 'disabled');
+                            document.querySelector('#stopNotifications').setAttribute('disabled', 'disabled');
+
+                            // Show Accept/Reject buttons after stop
+                            document.getElementById('acceptGesture').style.display = 'inline-block';
+                            document.getElementById('rejectGesture').style.display = 'inline-block';
+
+                            // Reset the progress bar
+                            const progressBar = document.getElementById('progressBar');
+                            progressBar.style.width = '100%';  // Reset the bar to full width
+                            clearInterval(progressInterval);
+                        })
+                        .catch(error => {
+                            log('Argh! ' + error);
+                        });
+                }
+
+                if (enable) {
+                    enable.writeValue(new Uint8Array([0x00]))
+                        .then(_ => {
+                            log('Disabling Cato Motion service');
+                        })
+                        .catch(error => {
+                            log('Argh! ' + error);
+                            return
+                        });
+                }
             }
-        }
 
 
         function handleNotifications(event) {
