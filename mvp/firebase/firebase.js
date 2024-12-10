@@ -22,13 +22,13 @@ import { getStorage } from 'firebase/storage';
 
 // Configure Firebase.
 const firebaseConfig = {
-  apiKey: "AIzaSyANo1eESWXTEumIdvcvOV2cat1ZGbyrhvg",
-  authDomain: "sk-exp.firebaseapp.com",
-  projectId: "sk-exp",
-  storageBucket: "sk-exp.firebasestorage.app",
-  messagingSenderId: "772476640334",
-  appId: "1:772476640334:web:44f8a8bd36dc93f66b371f",
-  measurementId: "G-S2D53Z2B6Z"
+  apiKey: "AIzaSyActcKgHX5X5qRU6DkTbu1-8NSP6LHWqHA",
+  authDomain: "exp-report.firebaseapp.com",
+  projectId: "exp-report",
+  storageBucket: "exp-report.firebasestorage.app",
+  messagingSenderId: "677312883926",
+  appId: "1:677312883926:web:d72c93753585ddb5e06d77",
+  measurementId: "G-4JLQV0YPTS"
 };
 
 export const app = initializeApp(firebaseConfig);

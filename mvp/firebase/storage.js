@@ -20,7 +20,7 @@ import { deleteObject, getDownloadURL as getStorageDownloadURL, ref, uploadBytes
 import { storage } from './firebase';
 
 // Bucket URL from Storage in Firebase Console
-const BUCKET_URL = "gs://sk-exp.firebasestorage.app";
+const BUCKET_URL = "gs://exp-report.firebasestorage.app";
 
 // Uploads image and returns the storage bucket
 export async function uploadImage(image, uid) {
