@@ -59,7 +59,7 @@ export default function Dashboard() {
   const { authUser, isLoading } = useAuth();
   const router = useRouter();
   const [action, setAction] = useState(RECEIPTS_ENUM.none);
-  
+
   // State involved in loading, setting, deleting, and updating receipts
   const [isLoadingReceipts, setIsLoadingReceipts] = useState(true);
   const [deleteReceiptId, setDeleteReceiptId] = useState("");
@@ -134,7 +134,7 @@ export default function Dashboard() {
     :
     <div>
       <Head>
-        <title>Cato Gesture Collection</title>
+        <title>MyCato-Dashboard</title>
       </Head>
 
       <NavBar />
@@ -149,7 +149,7 @@ export default function Dashboard() {
         </Snackbar>
         <Stack direction="row" sx={{ paddingTop: "1.5em" }}>
           <Typography variant="h4" sx={{ lineHeight: 2, paddingRight: "0.5em" }}>
-            GESTURES
+            Gesture Collection
           </Typography>
           <IconButton aria-label="edit" color="secondary" onClick={onClickAdd} className={styles.addButton}>
             <AddIcon />

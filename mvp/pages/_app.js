@@ -16,7 +16,6 @@
  */
 
 import '../styles/global.scss'
-import '../styles/firebaseui-styling.global.scss';
 import { AuthUserProvider } from '../firebase/auth';
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from '../styles/theme.js';

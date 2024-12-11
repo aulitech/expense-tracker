@@ -17,7 +17,7 @@
 
  import { createTheme } from '@mui/material/styles';
  import { errorColor, fontColor, fontDefault, fontTitle, primaryColor, secondaryColor, successColor, tertiaryColor } from './_variables.module.scss';
- 
+
  export const theme = createTheme({
    palette: {
      primary: {
@@ -82,32 +82,33 @@
          },
          h1: {
            color: fontColor,
-           fontSize: "84px",
+           fontSize: "5rem",
            fontWeight: "400"
          },
          h2: {
-           fontSize: "40px",
+           fontSize: "3.5rem",
            fontWeight: "100",
            opacity: "60%"
          },
          h3: {
            fontFamily: fontTitle,
-           fontSize: "24px"
+           fontSize: "1.5rem",
          },
          h4: {
            color: fontColor,
            fontFamily: fontTitle,
-           fontSize: "24px",
+           fontSize: "1.25rem",
            fontWeight: "600"
          },
          h5: {
            color: fontColor,
+           fontSize: "1.1rem",
            fontWeight: "200"
          },
          h6: {
            color: fontColor,
            fontWeight: "200",
-           fontSize: "14px"
+           fontSize: "1rem"
          }
        }
      }

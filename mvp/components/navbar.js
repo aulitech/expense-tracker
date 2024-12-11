@@ -17,20 +17,19 @@
 
 import { AppBar, Box, Button, Container, Stack, Toolbar, Typography } from '@mui/material';
 import { useAuth } from '../firebase/auth';
-import styles from '../styles/navbar.module.scss';
 
 export default function NavBar() {
   const { authUser, signOut } = useAuth();
 
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" className={styles.appbar}>
-        <Toolbar className={styles.toolbar}>
-          <Container className={styles.container}>
-            <Typography variant="h3" sx={{ flexGrow: 1, alignSelf: "center" }}>
-              EXPENSE TRACKER
+      <AppBar position="static" >
+        <Toolbar >
+          <Container sx={{ display:"flex" }} >
+            <Typography variant="h3" sx={{ flexGrow: 1, alignSelf: "left" }}>
+              MyCato
             </Typography>
-            <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
+            <Stack direction="column" spacing={1} sx={{ alignItems: "right" }}>
               <Typography variant="h6" sx={{ flexGrow: 1 }}>
                 {authUser?.email}
               </Typography>

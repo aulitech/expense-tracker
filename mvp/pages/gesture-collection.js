@@ -2,8 +2,13 @@ import React, { useState } from 'react';
 import GestureInputs from '../components/GestureInputs';
 import BluetoothConnector from '../components/BluetoothConnector';
 import GestureControl from '../components/GestureControl';
+import NavBar from '../components/navbar';
+import { useAuth } from '../firebase/auth';
+import Head from 'next/head';
+import CircularProgress from '@mui/material/CircularProgress';
 
 function GestureCollection() {
+    const { authUser, isLoading } = useAuth();
     const [gestureInputs, setGestureInputs] = useState({}); // State for input fields
     const [gestureData, setGestureData] = useState([]); // State for collected gestures
     const [enableCharacteristic, setEnableCharacteristic] = useState(null); // Enable characteristic
@@ -27,9 +32,16 @@ function GestureCollection() {
         setAccelerometerCharacteristic(accChar);
     };
 
-    return (
-        <div>
-            <h1>Gesture Collection App</h1>
+    return  ((!authUser ) ?
+    <CircularProgress color="inherit" sx={{ marginLeft: '50%', marginTop: '25%' }}/>
+    :
+    <div>
+      <Head>
+        <title>MyCato-Gesture Collection</title>
+      </Head>
+
+
+            <NavBar />
 
             {/* Input Fields */}
             <GestureInputs onUpdate={handleInputUpdate} />

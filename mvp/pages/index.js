@@ -23,7 +23,7 @@ import { EmailAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import { Button, CircularProgress, Container, Dialog, Typography } from '@mui/material';
 import { useAuth } from '../firebase/auth';
 import { auth } from '../firebase/firebase';
-import styles from '../styles/landing.module.scss';
+import Stack from '@mui/material/Stack';
 
 const REDIRECT_PAGE = '/dashboard';
 
@@ -49,28 +49,27 @@ export default function Home() {
     }
   }, [authUser, isLoading])
 
-  return ((isLoading || (!isLoading && !!authUser)) ? 
-    <CircularProgress color="inherit" sx={{ marginLeft: '50%', marginTop: '25%' }}/>
+  return ((isLoading || (!isLoading && !!authUser)) ?
+    <CircularProgress color="inherit" sx={{ marginLeft: '50%', marginTop: '25%' }} />
     :
     <div>
       <Head>
-        <title>Expense Tracker</title>
+        <title>MyCato</title>
       </Head>
 
       <main>
-        <Container className={styles.container}>
-          <Typography variant="h1">Welcome to Cato Gesture Collection!</Typography>
-          <Typography variant="h2">Add, view, edit, and delete your Cato Gestures</Typography>
-          <div className={styles.buttons}>
-            <Button variant="contained" color="secondary"
-                    onClick={() => setLogin(true)}>
-              Login / Register
-            </Button>
-          </div>
+        <Stack spacing={2} sx= {{ alignItems:"center", marginTop:"25vh"}}>
+          <Typography variant="h1">MyCato</Typography>
+          <Button
+            sx={{ width:"50%" }}
+            variant="contained"
+            color="secondary"
+            onClick={() => setLogin(true)}>Login / Register
+          </Button>
           <Dialog onClose={() => setLogin(false)} open={login}>
-            <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth}/>
+            <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={auth} />
           </Dialog>
-        </Container>
+        </Stack >
       </main>
     </div>
   )
