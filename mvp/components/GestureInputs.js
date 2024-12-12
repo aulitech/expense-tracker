@@ -30,7 +30,7 @@ function GestureInputs({ onUpdate }) {
 
     return (
         <div>
-            <Paper  elevation={1} style={{ padding: '2rem', margin: '4rem' }}>
+            <Paper elevation={1} style={{ padding: '2rem', margin: '4rem' }}>
                 <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap">
                     <TextField
                         id="userName"
@@ -115,7 +115,7 @@ function GestureInputs({ onUpdate }) {
                 </Stack>
             </Paper>
         </div>
-     );
+    );
 }
 
 export default GestureInputs;

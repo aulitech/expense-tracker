@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Button from '@mui/material/Button';
 
 function BluetoothConnector({ onCharacteristicsReady }) {
     const [isConnected, setIsConnected] = useState(false); // Track connection status
@@ -69,10 +70,13 @@ function BluetoothConnector({ onCharacteristicsReady }) {
 
     return (
         <div>
-            <button onClick={handleBluetoothToggle}>
-                {isConnected ? 'Disconnect Device' : 'Connect Device'}
-            </button>
-            <p>Status: {isConnected ? `Connected to ${device?.name}` : 'Not Connected'}</p>
+            <Button
+                onClick={handleBluetoothToggle}
+                variant={ isConnected ?"text":"contained"}
+                color={ isConnected ? "secondary" : "primary"}
+            >
+                {isConnected ? device.name : 'Connect Cato'}
+            </Button>
         </div>
     );
 }

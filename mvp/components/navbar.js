@@ -17,29 +17,34 @@
 
 import { AppBar, Box, Button, Container, Stack, Toolbar, Typography } from '@mui/material';
 import { useAuth } from '../firebase/auth';
+import Logo from './logo';
+import BluetoothConnector from './BluetoothConnector';
 
 export default function NavBar() {
   const { authUser, signOut } = useAuth();
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static" >
-        <Toolbar >
-          <Container sx={{ display:"flex" }} >
-            <Typography variant="h3" sx={{ flexGrow: 1, alignSelf: "left" }}>
-              MyCato
-            </Typography>
-            <Stack direction="column" spacing={1} sx={{ alignItems: "right" }}>
-              <Typography variant="h6" sx={{ flexGrow: 1 }}>
-                {authUser?.email}
-              </Typography>
-              <Button variant="text" color="secondary" onClick={signOut}>
-                Logout
-              </Button>
-            </Stack>
-          </Container>
-        </Toolbar>
-      </AppBar>
-    </Box>
+    <AppBar position="static" >
+      <Toolbar sx={{ display: "flex", margin: ".2rem 2rem ", justifyContent: "space-between" }} >
+        <Logo width="3rem" height="3rem" />
+
+        <Stack direction="row" spacing={2} sx={{ alignItems: "center" }}>
+          <BluetoothConnector />
+          <Button variant="text" disabled color="secondary" href="/dashboard">Keypad
+          </Button>
+          <Button variant="text"  color="secondary" href="/gesture-collection">Gesture Collection
+          </Button>
+          <Button variant="text" disabled color="secondary" href="/dashboard">Settings
+          </Button>
+        </Stack>
+
+        <Stack direction="column" spacing=".25" sx={{ alignItems: "end" }}>
+          <Typography variant="h6" >{authUser?.email}
+          </Typography>
+          <Button sx={{ padding:"0"}} variant="text" color="secondary" onClick={signOut}>Logout
+          </Button>
+        </Stack>
+      </Toolbar>
+    </AppBar>
   );
 }

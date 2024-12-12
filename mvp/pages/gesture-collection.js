@@ -5,7 +5,7 @@ import GestureControl from '../components/GestureControl';
 import NavBar from '../components/navbar';
 import { useAuth } from '../firebase/auth';
 import Head from 'next/head';
-import CircularProgress from '@mui/material/CircularProgress';
+
 
 function GestureCollection() {
     const { authUser, isLoading } = useAuth();
